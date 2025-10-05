@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c02fc15-3cea-4b8d-87c4-92f10257e669" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/CS423-Assembler.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assembler.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input.sic" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/instfile.py" afterDir="false" />
+    <list default="true" id="7c02fc15-3cea-4b8d-87c4-92f10257e669" name="Changes" comment="Init Commit: add instfile.py completly, add Assembler.py till lexan">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assembler.py" beforeDir="false" afterPath="$PROJECT_DIR$/Assembler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +23,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "iMD10"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/iMD10/CS423-Assembler.git",
+    "accountId": "f7b24080-e3a6-483e-94a5-35f93a6658d7"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 6
 }]]></component>
@@ -60,6 +66,15 @@
       <option name="presentableId" value="Default" />
       <updated>1759633300333</updated>
     </task>
+    <task id="LOCAL-00001" summary="Init Commit: add instfile.py completly, add Assembler.py till lexan">
+      <option name="closed" value="true" />
+      <created>1759636264770</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1759636264770</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -72,5 +87,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Init Commit: add instfile.py completly, add Assembler.py till lexan" />
+    <option name="LAST_COMMIT_MESSAGE" value="Init Commit: add instfile.py completly, add Assembler.py till lexan" />
   </component>
 </project>
