@@ -1,6 +1,6 @@
-prog start 0x100
-    lda xx, x
-    sta yy
-xx  word 5
-yy  resw 1
+prog start 0x123
+    sta xx, x
+xx  byte c'abcd'
+zz  word 5
+
     end prog

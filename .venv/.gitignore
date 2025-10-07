@@ -1,0 +1,16 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.venv/
+
+# PyCharm project settings
+.idea/
+
+# Environment variables file
+.env
+
+# macOS / Windows junk files
+.DS_Store
+Thumbs.db
