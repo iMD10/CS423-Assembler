@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c02fc15-3cea-4b8d-87c4-92f10257e669" name="Changes" comment="Add pass 2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assembler.py" beforeDir="false" afterPath="$PROJECT_DIR$/Assembler.py" afterDir="false" />
-    </list>
+    <list default="true" id="7c02fc15-3cea-4b8d-87c4-92f10257e669" name="Changes" comment="Add objcode translation" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -137,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759801171322</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Add objcode translation">
+      <option name="closed" value="true" />
+      <created>1759836828460</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1759836828460</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -156,6 +161,7 @@
     <MESSAGE value="Add main, match, error functions" />
     <MESSAGE value="Phase-1: Add parser, lexan" />
     <MESSAGE value="Add pass 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add pass 2" />
+    <MESSAGE value="Add objcode translation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add objcode translation" />
   </component>
 </project>
