@@ -40,6 +40,10 @@ pass1or2 = 1
 locctr = 0
 lookahead = ''
 startLine = True
+objectCode = True
+prog_size = 0
+start_loading_address = 0
+
 
 Xbit4set = 0X800000
 Bbit4set = 0x400000
@@ -187,14 +191,17 @@ def parse():
     tail()
 
 def header():
-    global lookahead, locctr, tokenval
+    global lookahead, locctr, tokenval, start_loading_address, prog_size
     lookahead = lexan()
     tok = tokenval
     match('ID')
     match('START')
     locctr = tokenval
-    symtable[tok].att = tokenval
+    start_loading_address = symtable[tok].att = locctr = tokenval
     match('NUM')
+    if pass1or2 == 2:
+        if objectCode:
+            print('H'+symtable[tok].string+'   {:06X} {:06x}'.format(start_loading_address,prog_size))
 
 
 def body():
@@ -223,8 +230,11 @@ def stmt():
     match('ID')
     index()
     if pass1or2 == 2:
-        print('{:06X}'.format(inst))
-        pass
+        if objectCode:
+            print('T{:06X} {:02X} {:06X}'.format(locctr - 3, 3, inst))
+        else:
+            print('T{:06X}'.format(inst))
+
 
 def data():
     global locctr, startLine, locctr, pass1or2
@@ -232,21 +242,26 @@ def data():
         match('WORD')
         locctr += 3
         if pass1or2 == 2:
-            print('{:06X}'.format(tokenval))
+            if objectCode:
+                print('T{:06X} {:02X} {:06X}'.format(locctr - 3, 3, tokenval))
+            else:
+                print('{:06X}'.format(tokenval))
         match('NUM')
     elif lookahead == 'RESW':
         match('RESW')
         locctr += 3 * tokenval
         if pass1or2 == 2:
-            for i in range(tokenval):
-                print('000000')
+            if not objectCode:
+                for i in range(tokenval):
+                    print('000000')
         match('NUM')
     elif lookahead == 'RESB':
         match('RESB')
         locctr += tokenval
         if pass1or2 == 2:
-            for i in range(tokenval):
-                print('00')
+            if not objectCode:
+                for i in range(tokenval):
+                    print('00')
         match('NUM')
     elif lookahead == 'BYTE':
         match('BYTE')
@@ -260,19 +275,31 @@ def rest2():
     if lookahead == 'STRING':
         locctr += size
         if pass1or2 == 2:
-            print(symtable[tokenval].att)
+            if objectCode:
+                print('T{:06X} {:02X}'.format(locctr - size, size, symtable[tokenval].att) + ' '+ symtable[tokenval].att )
+            else:
+                print(symtable[tokenval].att)
         match('STRING')
     elif lookahead == 'HEX':
         locctr += size
         if pass1or2 == 2:
-            print(symtable[tokenval].att)
+            if objectCode:
+                print(
+                    'T{:06X} {:02X}'.format(locctr - size, size, symtable[tokenval].att) + ' ' + symtable[tokenval].att)
+            else:
+                print(symtable[tokenval].att)
         match('HEX')
     else:
         error("Syntax Error")
 
 def tail():
+    global start_loading_address, prog_size
     match('END')
+    if pass1or2 == 2:
+        if objectCode:
+            print('E{:06X}'.format(symtable[tokenval].att))
     match('ID')
+    prog_size = locctr - start_loading_address
 
 def main():
     global file, filecontent, locctr, pass1or2, bufferindex, lineno

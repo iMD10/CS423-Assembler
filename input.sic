@@ -1,4 +1,4 @@
-prog start 0x123
+prog start 123
     sta xx, x
 xx  byte c'abcd'
 zz  word 5
