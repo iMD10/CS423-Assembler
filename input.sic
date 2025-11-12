@@ -1,5 +1,8 @@
-prog start 123
-    sta xx, x
-    rsub
-xx  byte c'abcd'
-    end prog
+TEST    START   0000
+        LDA     VALUE
+        ADD     ONE
+        STA     RESULT
+VALUE   WORD    5
+ONE     WORD    1
+RESULT  RESW    1
+        END     TEST
