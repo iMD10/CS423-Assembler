@@ -226,8 +226,9 @@ def stmt():
     tok = tokenval
     if pass1or2 == 2:
         inst = symtable[tokenval].att << 16
-    match('F3')
     locctr += 3
+    match('F3')
+    
     if symtable[tok].string != 'RSUB':
         inst += symtable[tokenval].att
         if pass1or2 == 1:
