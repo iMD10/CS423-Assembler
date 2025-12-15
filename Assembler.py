@@ -235,8 +235,6 @@ def stmt():
             modified.append(locctr-3 + 1)
         match('ID')
         index()
-    elif symtable[tok].string == 'RSUB':
-        inst += symtable[tokenval].att
     if pass1or2 == 2:
         if objectCode:
             print('T{:06X} {:02X} {:06X}'.format(locctr - 3, 3, inst))
