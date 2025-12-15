@@ -1,8 +1,15 @@
-TEST    START   0000
-        LDA     VALUE
-        ADD     ONE
-        STA     RESULT
-VALUE   WORD    5
-ONE     WORD    1
-RESULT  RESW    1
-        END     TEST
+Program1  START   0
+
+exec      LDX     null
+back      LDCH    msg,X
+          TIX     size
+          JEQ     finish
+          WD      dv
+          J       back
+size      WORD    14
+null      WORD    0
+dv        BYTE    X'5A'
+msg       BYTE    C'Proj1'
+
+finish    RSUB
+          END     exec

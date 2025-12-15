@@ -8,35 +8,30 @@ class Entry:
         self.token = token
         self.att = attribute
 
-
 symtable = []
 
-
 def lookup(s):
-    for i in range(0, symtable.__len__()):
+    for i in range(0,symtable.__len__()):
         if s == symtable[i].string:
             return i
     return -1
 
-
-def insert(s, t, a):
-    symtable.append(Entry(s, t, a))
-    return symtable.__len__() - 1
-
+def insert(s,t,a):
+    symtable.append(Entry(s,t,a))
+    return symtable.__len__()-1
 
 def init():
-    for i in range(0, instfile.inst.__len__()):
+    for i in range(0,instfile.inst.__len__()):
         insert(instfile.inst[i], instfile.token[i], instfile.opcode[i])
-    for i in range(0, instfile.directives.__len__()):
+    for i in range(0,instfile.directives.__len__()):
         insert(instfile.directives[i], instfile.dirtoken[i], instfile.dircode[i])
     # in case of extension of the architecture
-    for i in range(0, instfile.inst_ex.__len__()):
+    for i in range(0,instfile.inst_ex.__len__()):
         insert(instfile.inst_ex[i], instfile.inst_token_ex[i], instfile.inst_ex_opcode[i])
-    for i in range(0, instfile.dir_ex.__len__()):
+    for i in range(0,instfile.dir_ex.__len__()):
         insert(instfile.dir_ex[i], instfile.dir_ex_token[i], instfile.dir_ex_code[i])
 
-
-file = open('input.sic', 'r')  # open the user input file (here called input.sic)
+file = open('input.sic', 'r')  #open the user input file (here called input.sic)
 filecontent = []
 bufferindex = 0
 tokenval = 0
@@ -49,6 +44,7 @@ objectCode = True
 prog_size = 0
 start_loading_address = 0
 modified = []
+
 
 Xbit4set = 0X800000
 Bbit4set = 0x400000
@@ -65,7 +61,6 @@ Ebit3set = 0x1000
 
 inst = 0
 
-
 def is_hex(s):
     if s[0:2].upper() == "0X":
         try:
@@ -75,7 +70,6 @@ def is_hex(s):
             return False
     else:
         return False
-
 
 def lexan():
     global filecontent, tokenval, lineno, bufferindex, locctr, startLine
@@ -108,7 +102,7 @@ def lexan():
         return (c)
     else:
         # check if there is a string or hex starting with C'string' or X'hex'
-        if (filecontent[bufferindex].upper() == 'C') and (filecontent[bufferindex + 1] == '\''):
+        if (filecontent[bufferindex].upper() == 'C') and (filecontent[bufferindex+1] == '\''):
             bytestring = ''
             bufferindex += 2
             while filecontent[bufferindex] != '\'':  # should we take into account the missing ' error?
@@ -123,7 +117,7 @@ def lexan():
             if p == -1:
                 p = insert(bytestring, 'STRING', bytestringvalue)  # should we deal with literals?
             tokenval = p
-        elif (filecontent[bufferindex] == '\''):  # a string can start with C' or only with '
+        elif (filecontent[bufferindex] == '\''): # a string can start with C' or only with '
             bytestring = ''
             bufferindex += 1
             while filecontent[bufferindex] != '\'':  # should we take into account the missing ' error?
@@ -138,27 +132,27 @@ def lexan():
             if p == -1:
                 p = insert(bytestring, 'STRING', bytestringvalue)  # should we deal with literals?
             tokenval = p
-        elif (filecontent[bufferindex].upper() == 'X') and (filecontent[bufferindex + 1] == '\''):
+        elif (filecontent[bufferindex].upper() == 'X') and (filecontent[bufferindex+1] == '\''):
             bufferindex += 2
             bytestring = filecontent[bufferindex]
             bufferindex += 2
             # if filecontent[bufferindex] != '\'':# should we take into account the missing ' error?
 
             bytestringvalue = bytestring
-            if len(bytestringvalue) % 2 == 1:
-                bytestringvalue = '0' + bytestringvalue
+            if len(bytestringvalue)%2 == 1:
+                bytestringvalue = '0'+ bytestringvalue
             bytestring = '2_' + bytestring
             p = lookup(bytestring)
             if p == -1:
                 p = insert(bytestring, 'HEX', bytestringvalue)  # should we deal with literals?
             tokenval = p
         else:
-            p = lookup(filecontent[bufferindex].upper())
+            p=lookup(filecontent[bufferindex].upper())
             if p == -1:
                 if startLine == True:
-                    p = insert(filecontent[bufferindex].upper(), 'ID', locctr)  # should we deal with case-sensitive?
+                    p=insert(filecontent[bufferindex].upper(),'ID',locctr) # should we deal with case-sensitive?
                 else:
-                    p = insert(filecontent[bufferindex].upper(), 'ID', -1)  # forward reference
+                    p=insert(filecontent[bufferindex].upper(),'ID',-1) #forward reference
             else:
                 if (symtable[p].att == -1) and (startLine == True):
                     symtable[p].att = locctr
@@ -192,12 +186,10 @@ def index():
         return True
     return False
 
-
 def parse():
     header()
     body()
     tail()
-
 
 def header():
     global lookahead, locctr, tokenval, start_loading_address, prog_size
@@ -210,7 +202,7 @@ def header():
     match('NUM')
     if pass1or2 == 2:
         if objectCode:
-            print('H' + symtable[tok].string + '   {:06X} {:06X}'.format(start_loading_address, prog_size))
+            print('H'+symtable[tok].string+'   {:06X} {:06X}'.format(start_loading_address,prog_size))
 
 
 def body():
@@ -218,10 +210,9 @@ def body():
         match('ID')
         rest1()
         body()
-    elif lookahead == "F3":
+    elif lookahead == "F3" or lookahead == 'F6':
         stmt()
         body()
-
 
 def rest1():
     if lookahead == 'F3':
@@ -229,27 +220,51 @@ def rest1():
     elif lookahead in ["WORD", "RESW", "RESB", "BYTE"]:
         data()
 
-
 def stmt():
     global locctr, startLine, inst, pass1or2, modified
     startLine = False
     tok = tokenval
-    if pass1or2 == 2:
-        inst = symtable[tokenval].att << 16
-    locctr += 3
-    match('F3')
+    if lookahead == "F6":
 
-    if symtable[tok].string != 'RSUB':
-        inst += symtable[tokenval].att
-        if pass1or2 == 1:
-            modified.append(locctr - 3 + 1)
-        match('ID')
-        index()
-    if pass1or2 == 2:
-        if objectCode:
-            print('T{:06X} {:02X} {:06X}'.format(locctr - 3, 3, inst))
-        else:
-            print('T{:06X}'.format(inst))
+        if pass1or2 == 2:
+            inst = symtable[tokenval].att << 16
+        locctr += 3
+        match('F6')
+        if pass1or2 == 2:
+            inst += 0b011 << 12
+            inst += symtable[tokenval].att << 8
+        match('REG')
+        match(',')
+        if pass1or2 == 2:
+            inst += symtable[tokenval].att << 4
+        match('REG')
+        match(',')
+        if pass1or2 == 2:
+            inst += symtable[tokenval].att
+        match('REG')
+        if pass1or2 == 2:
+            if objectCode:
+                print('T{:06X} {:02X} {:06X}'.format(locctr - 3, 3, inst))
+            else:
+                print('T{:06X}'.format(inst))
+
+    elif lookahead == "F3":
+        if pass1or2 == 2:
+            inst = symtable[tokenval].att << 16
+        locctr += 3
+        match('F3')
+
+        if symtable[tok].string != 'RSUB':
+            inst += symtable[tokenval].att
+            if pass1or2 == 1:
+                modified.append(locctr - 3 + 1)
+            match('ID')
+            index()
+        if pass1or2 == 2:
+            if objectCode:
+                print('T{:06X} {:02X} {:06X}'.format(locctr - 3, 3, inst))
+            else:
+                print('T{:06X}'.format(inst))
 
 
 def data():
@@ -285,7 +300,6 @@ def data():
     else:
         error("Syntax Error")
 
-
 def rest2():
     global locctr
     size = int(len(symtable[tokenval].att) / 2)
@@ -293,8 +307,7 @@ def rest2():
         locctr += size
         if pass1or2 == 2:
             if objectCode:
-                print(
-                    'T{:06X} {:02X}'.format(locctr - size, size, symtable[tokenval].att) + ' ' + symtable[tokenval].att)
+                print('T{:06X} {:02X}'.format(locctr - size, size, symtable[tokenval].att) + ' '+ symtable[tokenval].att )
             else:
                 print(symtable[tokenval].att)
         match('STRING')
@@ -310,7 +323,6 @@ def rest2():
     else:
         error("Syntax Error")
 
-
 def tail():
     global start_loading_address, prog_size, modified
     match('END')
@@ -322,13 +334,12 @@ def tail():
     match('ID')
     prog_size = locctr - start_loading_address
 
-
 def main():
     global file, filecontent, locctr, pass1or2, bufferindex, lineno
     init()
     w = file.read()
     filecontent = re.split(r"([\W])", w)
-    i = 0
+    i=0
     while True:
         while (filecontent[i] == ' ') or (filecontent[i] == '') or (filecontent[i] == '\t'):
             del filecontent[i]
@@ -337,16 +348,19 @@ def main():
         i += 1
         if len(filecontent) <= i:
             break
-    if filecontent[len(filecontent) - 1] != '\n':  # to be sure that the content ends with new line
+    if filecontent[len(filecontent)-1] != '\n': #to be sure that the content ends with new line
         filecontent.append('\n')
 
-    for pass1or2 in range(1, 3):
+
+    for pass1or2 in range(1,3):
         parse()
         bufferindex = 0
         locctr = 0
         lineno = 1
 
     file.close()
+
+
 
 
 main()

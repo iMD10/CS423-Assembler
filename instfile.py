@@ -15,9 +15,9 @@ dircode  = [3, 1, 3, 1, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6]
 """
 In case of extension, we add in the following lists depending on the type: instruction or directive:
 """
-inst_ex = []
-inst_token_ex = []
-inst_ex_opcode = []
+inst_ex = ['ADDM']
+inst_token_ex = ['F6']
+inst_ex_opcode = [0x84]
 
 dir_ex = []
 dir_ex_token = []
