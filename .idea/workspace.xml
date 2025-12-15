@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c02fc15-3cea-4b8d-87c4-92f10257e669" name="Changes" comment="Adding modification code">
-      <change afterPath="$PROJECT_DIR$/practice.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xe/AssemblerXE.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xe/input.sic" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xe/instfile.py" afterDir="false" />
+    <list default="true" id="7c02fc15-3cea-4b8d-87c4-92f10257e669" name="Changes" comment="Add SIC/xe">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assembler.py" beforeDir="false" afterPath="$PROJECT_DIR$/Assembler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input.sic" beforeDir="false" afterPath="$PROJECT_DIR$/input.sic" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/instfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/instfile.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +55,14 @@
     "last_opened_file_path": "C:/Users/hanoo/PycharmProjects/CS423-Assembler/xe"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\hanoo\PycharmProjects\CS423-Assembler\xe" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hanoo\PycharmProjects\CS423-Assembler\xe" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Assembler" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CS423-Assembler" />
@@ -170,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762934319328</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add SIC/xe">
+      <option name="closed" value="true" />
+      <created>1765819835901</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1765819835902</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -192,7 +201,8 @@
     <MESSAGE value="Add objcode translation" />
     <MESSAGE value="Fix 'RSUB'" />
     <MESSAGE value="Adding modification code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding modification code" />
+    <MESSAGE value="Add SIC/xe" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add SIC/xe" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
