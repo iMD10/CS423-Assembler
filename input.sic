@@ -1,15 +1,4 @@
-Program1  START   0
+exec  START   0
 
-exec      LDX     null
-back      LDCH    msg,X
-          TIX     size
-          JEQ     finish
-          WD      dv
-          J       back
-size      WORD    14
-null      WORD    0
-dv        BYTE    X'5A'
-msg       BYTE    C'Proj1'
-
-finish    RSUB
+addm s,t,x
           END     exec

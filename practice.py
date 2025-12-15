@@ -231,7 +231,7 @@ def stmt():
         locctr += 3
         match('F6')
         if pass1or2 == 2:
-            inst += 0b011 << 12
+            inst += 0b0111 << 12
             inst += symtable[tokenval].att << 8
         match('REG')
         match(',')
