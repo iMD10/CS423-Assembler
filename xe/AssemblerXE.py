@@ -41,6 +41,11 @@ def init():
         insert(instfile.inst[i], instfile.token[i], instfile.opcode[i])
     for i in range(0, instfile.directives.__len__()):
         insert(instfile.directives[i], instfile.dirtoken[i], instfile.dircode[i])
+    for i in range(0, instfile.inst_ex.__len__()):
+        insert(instfile.inst_ex[i], instfile.inst_token_ex[i], instfile.inst_ex_opcode[i])
+    for i in range(0, instfile.dir_ex.__len__()):
+        insert(instfile.dir_ex[i], instfile.dir_ex_token[i], instfile.dir_ex_code[i])
+
 
 
 file = open('input.sic', 'r')

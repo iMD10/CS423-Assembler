@@ -7,6 +7,15 @@ directives = ["WORD", "BYTE", "RESW", "RESB", "START", "END", "BASE", 'A', 'X', 
 dirtoken   = ["WORD", "BYTE", "RESW", "RESB", "START", "END", "BASE", 'REG', 'REG', 'REG', 'REG', 'REG', 'REG', 'REG', 'USE', 'CDATA', 'CBLCK']
 dircode  = [3, 1, 3, 1, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 0, 0, 0] # number of bytes allocated for directives
 
+
+inst_ex = ['MADD','MSUB']
+inst_token_ex = ['F5', 'F5']
+inst_ex_opcode = [0xF8, 0xFC]
+
+dir_ex = []
+dir_ex_token = []
+dir_ex_code = []
+
 registers = ["A"]  # ????
 def inst2opcode(mnemonic):
     return opcode[inst.index(mnemonic)]
